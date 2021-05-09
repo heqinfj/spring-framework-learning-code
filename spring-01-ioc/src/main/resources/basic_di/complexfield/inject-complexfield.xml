@@ -35,12 +35,25 @@
                     <bean class="com.linkedbear.spring.basic_di.g_complexfield.bean.Cat"/>
                 </entry>
                 <entry key="18:00" value="睡觉"/>
+                <entry key="00:00">
+                    <!-- 集合是可以继续嵌套集合 示例如下 -->
+                    <list>
+                        <value>听听歌</value>
+                        <value>吃东东</value>
+                        <list>
+                            <value>打打游戏</value>
+                            <value>看看电影</value>
+                        </list>
+                    </list>
+                </entry>
             </map>
         </property>
+        <!-- Properties 类型与 Map 其实是一模一样的，注入的方式也基本一样，只不过有一点：Properties 的 key 和 value 只能是 String 类型。 -->
         <property name="props">
             <props>
                 <prop key="sex">男</prop>
                 <prop key="age">18</prop>
+                <prop key="address">果戈里大街1号</prop>
             </props>
         </property>
     </bean>
