@@ -1,6 +1,7 @@
 package com.linkedbear.spring.annotation.d_importxml;
 
 import com.linkedbear.spring.annotation.d_importxml.config.ImportXmlAnnotationConfiguration;
+import com.linkedbear.spring.basic_dl.a_quickstart_byname.bean.Person;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -29,5 +30,8 @@ public class ImportXmlAnnoApplication {
         String[] alias = ctx2.getAliases("boyMan");
         System.out.println(Arrays.toString(alias));//[a1, a2]
 
+        System.out.println(Person.class.getCanonicalName());
+        System.out.println(ctx2.getBean("com.linkedbear.spring.basic_dl.a_quickstart_byname.bean.Person"));
+        System.out.println(ctx2.getBean("com.linkedbear.spring.basic_dl.a_quickstart_byname.bean.Person#0"));
     }
 }

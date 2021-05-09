@@ -7,4 +7,7 @@
     <bean id="person" name="superMan"  class="com.linkedbear.spring.basic_dl.a_quickstart_byname.bean.Person"/>
 
     <bean name="boyMan,a1,a2"  class="com.linkedbear.spring.basic_dl.a_quickstart_byname.bean.Person"/>
+
+    <!-- 配置一个bean的时候，我们可以不设置id，也可以不设置name，spring默认会使用类的全限定名作为bean的标识符。 -->
+    <bean class="com.linkedbear.spring.basic_dl.a_quickstart_byname.bean.Person"/>
 </beans>
