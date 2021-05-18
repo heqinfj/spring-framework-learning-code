@@ -7,6 +7,8 @@ import com.linkedbear.spring.lifecycle.e_source.config.LifecycleNameReadPostProc
 import com.linkedbear.spring.lifecycle.e_source.config.LifecycleSourceConfiguration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.Map;
+
 public class LifecycleSourceAnnotationApplication {
     
     public static void main(String[] args) throws Exception {
@@ -25,8 +27,12 @@ public class LifecycleSourceAnnotationApplication {
         
         System.out.println("================IOC容器启动完成==================");
     
-        Person person = ctx.getBean(Person.class);
-        System.out.println(person);
+//        Person person = ctx.getBean(Person.class);
+//        System.out.println(person);
+        Map<String, Person> personMap = ctx.getBeansOfType(Person.class);
+        System.out.println("personMap: " + personMap.toString());
+
+
         Cat cat = ctx.getBean(Cat.class);
         System.out.println(cat);
         
