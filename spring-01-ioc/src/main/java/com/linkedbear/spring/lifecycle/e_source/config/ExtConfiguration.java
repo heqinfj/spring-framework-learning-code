@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Primary;
 /**
  * @author heqin
  */
+//通过@Import方式被导入
 @Configuration
 public class ExtConfiguration {
 
