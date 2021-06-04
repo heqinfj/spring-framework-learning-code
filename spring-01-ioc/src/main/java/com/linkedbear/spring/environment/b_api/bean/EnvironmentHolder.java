@@ -14,6 +14,11 @@ public class EnvironmentHolder {
     
     public void printEnvironment() {
         System.out.println(Arrays.toString(environment.getDefaultProfiles()));
+        //测试再次调用 AbstractEnvironment类的getDefaultProfiles
+        System.out.println(Arrays.toString(environment.getDefaultProfiles()));
+        System.out.println(Arrays.toString(environment.getActiveProfiles()));
+        //测试再次调用 AbstractEnvironment类的getActiveProfiles
+        System.out.println(Arrays.toString(environment.getActiveProfiles()));
         System.out.println(environment.getProperty("jdbc.url"));
     }
 }
