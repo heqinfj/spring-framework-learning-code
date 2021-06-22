@@ -13,7 +13,8 @@ public class MergeBeanDefinitionApplication {
         
         BeanDefinition catDefinition = ctx.getBeanFactory().getBeanDefinition("cat");
         System.out.println(catDefinition);
-        
+
+        //getMergedBeanDefinition
         BeanDefinition mergedCatDefinition = ctx.getBeanFactory().getMergedBeanDefinition("cat");
         System.out.println(mergedCatDefinition);
     }
