@@ -18,4 +18,6 @@ public interface Partner {
      * @param player
      */
     void playWith(Player player);
+
+    String toString();
 }

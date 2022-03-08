@@ -26,4 +26,9 @@ public class IndividualPartner implements Partner {
     public void playWith(Player player) {
         System.out.println(name + "与" + player.getName() + "一起愉快地玩耍 ~ ");
     }
+
+    @Override
+    public String toString() {
+        return "IndividualPartner...";
+    }
 }
