@@ -6,6 +6,7 @@ import com.linkedbear.spring.bean.a_type.bean.Toy;
 import com.linkedbear.spring.bean.a_type.bean.ToyFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class BeanTypeConfiguration {
@@ -16,8 +17,9 @@ public class BeanTypeConfiguration {
     }
     
 //    @Bean
+//    @Primary
 //    public Toy ball() {
-//        return new Ball("ball");
+//        return new Ball("ball2");
 //    }
     
     @Bean

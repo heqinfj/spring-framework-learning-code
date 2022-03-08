@@ -30,11 +30,20 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class AopProxyPostProcessor implements BeanPostProcessor, BeanFactoryAware {
+
+    public AopProxyPostProcessor(){
+        System.out.println("AopProxyPostProcessor instance...");
+    }
     
     private ConfigurableListableBeanFactory beanFactory;
     
     private Map<PointcutExpression, Method> beforePointcutMethodMap = new ConcurrentHashMap<>();
-    
+
+    @Override
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        return bean;
+    }
+
     @PostConstruct
     public void initAspectAndPointcuts() {
         // 取到BeanFactory中的所有BeanDefinition
