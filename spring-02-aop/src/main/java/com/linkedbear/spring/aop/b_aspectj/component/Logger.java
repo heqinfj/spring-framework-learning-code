@@ -1,5 +1,6 @@
 package com.linkedbear.spring.aop.b_aspectj.component;
 
+import com.linkedbear.spring.aop.b_aspectj.service.FinanceService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -10,6 +11,9 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+/**
+ * 首先，在 Logger 上标注 @Component 注解，将其注册到 IOC 容器中。然后还得标注一个 @Aspect 注解，代表该类是一个切面类：
+ */
 @Aspect
 @Component
 public class Logger {
@@ -53,5 +57,17 @@ public class Logger {
     @Pointcut("execution(* com.linkedbear.spring.aop.b_aspectj.service.*.*(String)))")
     public void defaultPointcut() {
     
+    }
+
+    @Around("execution(public * com.linkedbear.spring.aop.b_aspectj.service.FinanceService.findMoney(..))")
+    public Object aroundHandle(ProceedingJoinPoint joinPoint) throws Throwable {
+        Object retVal = joinPoint.proceed();
+        if(retVal instanceof FinanceService.Money){
+            FinanceService.Money money = (FinanceService.Money)retVal;
+            System.out.printf("money的value值为：%s",money.getValue());
+            System.out.println();
+            return money;
+        }
+        return retVal;
     }
 }

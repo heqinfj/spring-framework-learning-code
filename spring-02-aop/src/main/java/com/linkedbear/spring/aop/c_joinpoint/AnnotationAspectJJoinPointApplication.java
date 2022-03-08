@@ -11,6 +11,7 @@ public class AnnotationAspectJJoinPointApplication {
                 AspectJJoinPointAOPConfiguration.class);
         FinanceService financeService = ctx.getBean(FinanceService.class);
         financeService.addMoney(123.45);
-        financeService.subtractMoney(543.21);
+        double subtractMoney = financeService.subtractMoney(543.21);
+        System.out.println("subtractMoney: " + subtractMoney);
     }
 }

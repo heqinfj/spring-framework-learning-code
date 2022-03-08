@@ -29,10 +29,11 @@ public class PartnerPlatform {
      */
     public static Partner getPartner(int money) {
         Partner partner = partners.remove(0);
+        System.out.println("目标类的实例：" + partner);
         return (Partner) Enhancer.create(partner.getClass(), new MethodInterceptor() {
             private int budget = money;
             private boolean status = false;
-            
+
             @Override
             public Object intercept(Object proxy, Method method, Object[] args, MethodProxy methodProxy)
                     throws Throwable {
@@ -42,7 +43,9 @@ public class PartnerPlatform {
                     this.status = money >= budget;
                 }
                 if (status) {
-                    return method.invoke(partner, args);
+                    //https://www.liaoxuefeng.com/wiki/1252599548343744/1339039378571298
+                    return methodProxy.invokeSuper(proxy,args);//TODO 代理对象proxy的属性name为null，不知为什么？
+                    //return method.invoke(partner, args);
                 }
                 return null;
             }

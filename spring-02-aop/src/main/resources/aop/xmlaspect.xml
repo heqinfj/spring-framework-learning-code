@@ -12,6 +12,7 @@
     <aop:aspectj-autoproxy/>
 
     <aop:config>
+        <!-- 一个 aspect 就是一个切面，id 随便起，只要是全局唯一即可；ref 跟 IOC 部分提到的 ref 一样，都是引用容器中的某个 bean ，这里咱要使用 Logger 作为切面类，所以 ref 就引用 logger 这个 bean 。 -->
         <aop:aspect id="loggerAspect" ref="logger">
             <aop:pointcut id="defaultPointcut" expression="execution(public * com.linkedbear.spring.aop.a_xmlaspect.service.*.*(..))"/>
 
