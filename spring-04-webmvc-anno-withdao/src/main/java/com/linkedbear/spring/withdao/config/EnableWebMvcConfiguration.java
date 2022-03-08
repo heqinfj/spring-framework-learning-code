@@ -1,6 +1,9 @@
 package com.linkedbear.spring.withdao.config;
 
 import com.linkedbear.spring.withdao.converter.String2DateConverter;
+import com.linkedbear.spring.withdao.interceptor.DemoInterceptor;
+import com.linkedbear.spring.withdao.interceptor.DemoInterceptor1;
+import com.linkedbear.spring.withdao.testme.TestHandlerMethodArgumentResolver;
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,12 +13,15 @@ import org.springframework.http.CacheControl;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.time.Duration;
+import java.util.List;
 
 @Configuration
 @EnableWebMvc
@@ -45,5 +51,17 @@ public class EnableWebMvcConfiguration implements WebMvcConfigurer {
         LocalValidatorFactoryBean validatorFactoryBean = new LocalValidatorFactoryBean();
         validatorFactoryBean.setProviderClass(HibernateValidator.class);
         return validatorFactoryBean;
+    }
+
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+//        System.out.println(Thread.currentThread().getClass() + ",的方法addArgumentResolvers进来了");
+//        resolvers.add(new TestHandlerMethodArgumentResolver());
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new DemoInterceptor());
+        registry.addInterceptor(new DemoInterceptor1());
     }
 }
