@@ -26,7 +26,7 @@ public class EnableWebMvcConfiguration implements WebMvcConfigurer {
     
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.jsp("/WEN-INF/pages/", ".jsp");
+        registry.jsp("/WEB-INF/pages/", ".jsp");
     }
     
     @Override

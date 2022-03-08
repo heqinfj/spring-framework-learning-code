@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-// 简单写法，开发中不使用
+// 简单写法，开发中不使用 - TODO 也就是此类是没有加载到spring容器中
 @Configuration
 @ComponentScan(value = "com.linkedbear.spring.withdao",
                includeFilters = @ComponentScan.Filter(value = Controller.class, type = FilterType.ANNOTATION),

@@ -4,7 +4,10 @@ import com.linkedbear.spring.withdao.entity.User;
 import com.linkedbear.spring.withdao.service.DepartmentService;
 import com.linkedbear.spring.withdao.service.UserService;
 import com.linkedbear.spring.withdao.validation.UserPasswordGroup;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -25,7 +28,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/user")
 @CrossOrigin(origins = "http://localhost:8080")
-public class UserController76 {
+public class UserController76 implements ApplicationContextAware {
     
     @Autowired
     UserService userService;

@@ -4,7 +4,13 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="dog" class="com.linkedbear.spring.postprocessor.c_executetime.bean.Dog" init-method="initMethod"/>
+    <bean id="dog" class="com.linkedbear.spring.postprocessor.c_executetime.bean.Dog" init-method="initMethod">
+        <property name="name" value="bobo"></property>
+    </bean>
+
+    <bean id="person" class="com.linkedbear.spring.postprocessor.c_executetime.bean.Person">
+        <property name="name" value="xiaoming"></property>
+    </bean>
 
     <bean class="com.linkedbear.spring.postprocessor.c_executetime.config.ExecuteTimeBeanPostProcessor"/>
 

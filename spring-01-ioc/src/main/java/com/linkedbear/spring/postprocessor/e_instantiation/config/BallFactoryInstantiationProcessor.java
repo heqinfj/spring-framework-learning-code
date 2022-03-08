@@ -21,6 +21,8 @@ public class BallFactoryInstantiationProcessor implements InstantiationAwareBean
     @Override
     public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
         return true;
+        //TODO 如果为false则下面的postProcessProperties方法不会执行
+        //TODO 可以直接断点跟踪查看逻辑  AbstractAutowireCapableBeanFactory.java的if (!ibp.postProcessAfterInstantiation(bw.getWrappedInstance(), beanName))
     }
     
     @Override
