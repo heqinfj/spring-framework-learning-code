@@ -11,4 +11,6 @@ public interface DemoService {
     String say(String name);
 
     User print(String name);
+
+    User printEx(String name);
 }

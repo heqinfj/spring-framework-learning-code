@@ -1,6 +1,7 @@
 package com.linkedbear.spring.aop.t_demo_advice.component;
 
 import com.linkedbear.spring.aop.t_demo_advice.vo.User;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -9,6 +10,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
@@ -72,7 +74,7 @@ public class DemoLogAspect {
     }
 
     @Before("defaultPointcut()")
-    public void beforePrint() {
+    public void beforePrint(JoinPoint joinPoint) {
         System.out.println("Logger beforePrint run..." + getMethodAnnotationName());
     }
 
@@ -95,19 +97,34 @@ public class DemoLogAspect {
         } finally {
             if (retVal instanceof User) {
                 User user = (User) retVal;
-                user.setUserName("YoYo");
+                user.setUserName("在@Around中的finally中修改名字为YoYo");
+                System.out.println("在@Around中的finally中修改名字为YoYo");
             }
             System.out.println("Logger aroundPrint after run ......" + getMethodAnnotationName());
         }
     }
 
-    @AfterReturning("defaultPointcut()")
-    public void afterReturningPrint() {
+    @AfterReturning(value = "defaultPointcut()",returning = "retval")
+    public void afterReturningPrint(Object retval) {
         System.out.println("Logger afterReturningPrint run ......" + getMethodAnnotationName());
+        System.out.println("返回的数据：" + retval);
+        if(retval instanceof User){
+            User user = (User)retval;
+            user.setUserName("在@AfterReturning中修改名字为XiXi");
+            System.out.println("在@AfterReturning中修改名字为XiXi");
+        }
     }
 
-    @AfterThrowing("defaultPointcut()")
-    public void afterThrowingPrint() {
+    @AfterThrowing(value = "defaultPointcut()",throwing = "ex")
+    public void afterThrowingPrint(JoinPoint joinPoint,Exception ex) {
         System.out.println("Logger afterThrowingPrint run ......" + getMethodAnnotationName());
+        System.out.println("抛出的异常：" + ex.getMessage());
+        printJoinPoint(joinPoint);
+    }
+
+    private void printJoinPoint(JoinPoint joinPoint){
+        System.out.println("被拦截的类：" + joinPoint.getTarget().getClass().getName());
+        System.out.println("被拦截的方法：" + ((MethodSignature) joinPoint.getSignature()).getMethod().getName());
+        System.out.println("被拦截的方法参数：" + Arrays.toString(joinPoint.getArgs()));
     }
 }

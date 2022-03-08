@@ -13,5 +13,9 @@ public class AwareApplication {
         bbb.printBeanNames();
         System.out.println("-----------");
         System.out.println(bbb.getName());
+
+        System.out.println("-----------");
+        System.out.println(bbb.getResLoader() == bbb.getResourceLoaderFromAware());
+        System.out.println(bbb.getResLoader() == bbb.getResourceLoaderFromSet());
     }
 }

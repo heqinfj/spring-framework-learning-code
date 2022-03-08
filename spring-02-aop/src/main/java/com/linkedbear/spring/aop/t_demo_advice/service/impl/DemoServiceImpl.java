@@ -20,4 +20,10 @@ public class DemoServiceImpl implements DemoService {
     public User print(String name) {
         return new User(name,2);
     }
+
+    @Override
+    public User printEx(String name) {
+        int a = 1/0;
+        return new User(name,2);
+    }
 }
